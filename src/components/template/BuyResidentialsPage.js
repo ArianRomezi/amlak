@@ -1,5 +1,5 @@
 import Card from "@/module/Card";
-import SideBar from "@/module/SideBar";
+import SideBar from "@/module/Sidebar";
 import styles from "@/template/BuyResidentialsPage.module.css";
 
 const BuyResidentialsPage = ({ data }) => {
