@@ -1,16 +1,16 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Toaster, toast } from "react-hot-toast";
+import TextInput from "@/module/TextInput";
+import RadioList from "@/module/RadioList";
+import TextList from "@/module/TextList";
 import CustomDatePicker from "@/module/CustomDatePicker";
 import Loader from "@/module/Loader";
-import RadioList from "@/module/RadioList";
-import TextInput from "@/module/TextInput";
-import TextList from "@/module/TextList";
 import styles from "@/template/AddProfilePage.module.css";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { toast, Toaster } from "react-hot-toast";
 
-const AddProfilePage = ({ data }) => {
+function AddProfilePage({ data }) {
   const [profileData, setProfileData] = useState({
     title: "",
     description: "",
@@ -18,19 +18,35 @@ const AddProfilePage = ({ data }) => {
     phone: "",
     price: "",
     realState: "",
-    constructionData: new Date(),
+    constructionDate: new Date(),
     category: "",
     rules: [],
     amenities: [],
   });
-
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (data) setProfileData(data);
-  }, []);
+  }, [data]);
 
   const router = useRouter();
+
+  const submitHandler = async () => {
+    setLoading(true);
+    const res = await fetch("/api/profile", {
+      method: "POST",
+      body: JSON.stringify(profileData),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json();
+    setLoading(false);
+    if (data.error) {
+      toast.error(data.error);
+    } else {
+      toast.success(data.message);
+      router.refresh();
+    }
+  };
 
   const editHandler = async () => {
     setLoading(true);
@@ -40,34 +56,11 @@ const AddProfilePage = ({ data }) => {
       headers: { "Content-Type": "application/json" },
     });
     const data = await res.json();
-
     setLoading(false);
-
     if (data.error) {
       toast.error(data.error);
     } else {
-      toast.success(data.massage);
-      //baraye in estefade shode ta bad az click kardan va emale taghirat safhe ra refresh konad.
-      router.refresh();
-    }
-  };
-
-  const submitHandler = async () => {
-    setLoading(true);
-
-    const res = await fetch("/api/profile", {
-      method: "POST",
-      body: JSON.stringify(profileData),
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = await res.json();
-
-    setLoading(false);
-
-    if (data.error) {
-      toast.error(data.error);
-    } else {
-      toast.success(data.massage);
+      toast.success(data.message);
       router.refresh();
     }
   };
@@ -143,6 +136,6 @@ const AddProfilePage = ({ data }) => {
       )}
     </div>
   );
-};
+}
 
 export default AddProfilePage;

@@ -1,10 +1,10 @@
-import CategoryCard from "@/module/CategoryCard";
-import styles from "@/template/HomePage.module.css";
-import { FaCity } from "react-icons/fa";
 import { FiCircle } from "react-icons/fi";
-import { categories, services, cities } from "src/constants/string";
+import { FaCity } from "react-icons/fa";
+import CategoryCard from "@/module/CategoryCard";
+import { categories, cities, services } from "@/constants/string";
+import styles from "@/template/HomePage.module.css";
 
-const HomePage = () => {
+function HomePage() {
   return (
     <div>
       <div className={styles.banner}>
@@ -22,7 +22,7 @@ const HomePage = () => {
       </div>
       <div className={styles.categories}>
         {Object.keys(categories).map((i) => (
-          <CategoryCard title={categories[i]} name={i} />
+          <CategoryCard key={i} title={categories[i]} name={i} />
         ))}
       </div>
       <div className={styles.city}>
@@ -38,6 +38,6 @@ const HomePage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default HomePage;

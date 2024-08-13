@@ -1,9 +1,9 @@
-import styles from "@/module/Sidebar.module.css";
 import Link from "next/link";
 import { HiFilter } from "react-icons/hi";
 import { categories } from "@/constants/string";
+import styles from "@/module/Sidebar.module.css";
 
-const SideBar = () => {
+function Sidebar() {
   return (
     <div className={styles.container}>
       <p>
@@ -17,12 +17,13 @@ const SideBar = () => {
             pathname: "/buy-residential",
             query: { category: i },
           }}
+          key={i}
         >
           {categories[i]}
         </Link>
       ))}
     </div>
   );
-};
+}
 
-export default SideBar;
+export default Sidebar;

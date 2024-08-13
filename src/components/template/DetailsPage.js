@@ -8,7 +8,7 @@ import ItemList from "@/module/ItemList";
 import Title from "@/module/Title";
 import ShareButton from "@/module/ShareButton";
 import { icons } from "@/constants/icons";
-import { categories } from "@/constants/strings";
+import { categories } from "@/constants/string";
 
 const DetailsPage = ({
   data: {
