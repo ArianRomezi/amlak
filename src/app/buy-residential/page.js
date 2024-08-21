@@ -1,8 +1,9 @@
 import BuyResidentialsPage from "@/template/BuyResidentialsPage";
 
 const BuyResidentials = async ({ searchParams }) => {
-  //dar in ja in bakhsh dar samte server ast.agar api ha tu file haye ma mojud nabashad rahe zir dorost  ast am dar in ja api ha ra khodemun tose e dadim pas behtar ast az in ravesh estefade nakonim.
-  const res = await fetch("http://localhost:3000/api/profile", {
+  //samte server bayad localhost ro benevisim agar site
+  //dar in ja in bakhsh dar samte server ast.agar api ha tu file haye ma mojud nabashad rahe zir dorost  ast am dar in ja api ha ra khodemun tose e madim pas behtar ast az in ravesh estefade nakonim.
+  const res = await fetch("https://amlak-cyan.vercel.app/api/profile", {
     cache: "no-store",
   });
   const data = await res.json();
