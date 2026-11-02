@@ -185,7 +185,7 @@ export async function PATCH(req) {
 
     return NextResponse.json(
       {
-        message: "آگهی با موفقیت ویرایش شد",
+        message: "آگهی با موفقیت ثبت شد",
       },
       {
         status: 200,

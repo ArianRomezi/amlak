@@ -8,7 +8,7 @@ async function ProfileDetails({ params: { profileId } }) {
 
   if (!profile) return <h3>مشکلی پیش آمده است</h3>;
 
-  return <DetailsPage data={profile} />;
+  return <DetailsPage data={profile} profileId={profileId} />;
 }
 
 export default ProfileDetails;

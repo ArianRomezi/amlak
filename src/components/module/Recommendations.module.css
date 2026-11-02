@@ -1,0 +1,45 @@
+.container {
+  direction: rtl;
+  margin-top: 60px;
+  padding: 0 10px;
+}
+
+.section {
+  margin-bottom: 55px;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(230px, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.skeletonRow {
+  display: flex;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.skeletonCard {
+  width: 250px;
+  height: 340px;
+  background: #eef0f7;
+  border-radius: 10px;
+}

@@ -22,7 +22,7 @@ const DashboardCard = ({ data }) => {
     if (result.error) {
       toast.error(result.error);
     } else {
-      toast.success(result.massage);
+      toast.success(result.message);
       router.refresh();
     }
   };
