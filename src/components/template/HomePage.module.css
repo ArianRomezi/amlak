@@ -1,22 +1,25 @@
 .banner {
   display: flex;
-  justify-content: center;
   align-items: center;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 100px 0;
+  justify-content: center;
+  gap: var(--space-xl);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin: var(--space-xl) 0;
+  background: var(--brand-faint);
+  color: var(--brand-dark);
 }
 
 .desc {
   width: 100%;
   text-align: center;
-  color: #304ffe;
 }
 
 .desc h1 {
-  font-weight: 700;
-  font-size: 3rem;
-  margin-bottom: 30px;
+  font-size: var(--text-3xl);
+  font-weight: 400;
+  margin-bottom: var(--space-md);
+  line-height: var(--line-tight);
 }
 
 .desc ul {
@@ -24,78 +27,90 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  gap: var(--space-xs);
+  display: none;
 }
 
 .desc li {
   display: flex;
   align-items: center;
-  width: 80px;
-  margin: 10px;
-  background-color: #bbdefb;
-  padding: 5px 10px;
-  border-radius: 5px;
+  gap: var(--space-xs);
+  background-color: var(--brand-faint);
+  color: var(--brand-dark);
+  font-size: var(--text-base);
+  font-weight: 400;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
 }
 
-.desc span {
-  font-weight: 400;
-  margin-right: 5px;
-  height: 20px;
+.desc svg {
+  font-size: 1.2rem;
 }
 
 .categories {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
-  margin: 50px 0;
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
 }
 
 .city {
-  margin: 100px 0;
+  margin: var(--space-xl) 0;
 }
 
 .city h3 {
-  font-weight: 600;
-  font-size: 2rem;
+  font-size: var(--text-2xl);
+  font-weight: 400;
   text-align: center;
-  color: #304ffe;
+  color: var(--brand-dark);
+  margin-bottom: var(--space-md);
 }
 
 .city ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
-  margin-top: 50px;
+  gap: var(--space-sm);
   list-style: none;
+  margin-top: var(--space-md);
 }
 
 .city li {
-  background-color: #bbdefb;
-  color: #304ffe;
-  font-size: 1.2rem;
+  background-color: var(--brand-faint);
+  color: var(--brand-dark);
+  font-size: var(--text-base);
   width: 250px;
-  margin: 10px 0;
+  margin: var(--space-xs) 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
-  border-radius: 10px;
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+}
+
+.city svg {
+  color: var(--brand-dark);
+  font-size: 1.2rem;
+  margin-left: 5px;
 }
 
 .city span {
-  height: 30px;
-  margin-right: 15px;
-  font-weight: 400;
+  height: var(--space-lg);
+  margin-left: var(--space-xs);
+  font-weight: 200;
 }
 
 @media (max-width: 1000px) {
   .banner {
-    flex-direction: column-reverse;
+    flex-direction: column;
+    gap: var(--space-lg);
   }
 }
 
 @media (max-width: 600px) {
   .desc h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .categories {

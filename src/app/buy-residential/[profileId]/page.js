@@ -4,7 +4,7 @@ import connectDB from "@/utils/connectDB";
 
 async function ProfileDetails({ params: { profileId } }) {
   await connectDB();
-  const profile = await Profile.findOne({ _id: profileId });
+  const profile = await Profile.findOne({ _id: profileId }).lean();
 
   if (!profile) return <h3>مشکلی پیش آمده است</h3>;
 

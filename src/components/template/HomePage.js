@@ -9,7 +9,7 @@ function HomePage() {
     <div>
       <div className={styles.banner}>
         <div className={styles.desc}>
-          <h1>سامانه خرید و اجاره ملک</h1>
+          <h1>سامانه هوشمند پیشنهاد املاک</h1>
           <ul>
             {services.map((i) => (
               <li key={i}>

@@ -4,17 +4,24 @@
 }
 .container p {
   display: flex;
-  font-size: 1.2rem;
-  font-weight: 400;
+  font-size: var(--text-base);
+  font-weight: 200;
+  color: var(--text-secondary);
 }
 
 .container p svg {
-  margin-left: 5px;
+  margin-left: var(--space-xs);
   font-size: 1.3rem;
-  color: #304ffe !important;
+  color: var(--brand) !important;
 }
 
 .container a {
-  color: grey;
-  margin: 5px;
+  color: var(--text-secondary);
+  margin: var(--space-xs);
+  font-size: var(--text-base);
+  transition: color 0.15s ease;
+}
+
+.container a:hover {
+  color: var(--brand);
 }

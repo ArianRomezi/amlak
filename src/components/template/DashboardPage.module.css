@@ -1,28 +1,32 @@
-.cotainer h3 {
-  color: #304ffe;
-  font-weight: 400;
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+.container h3 {
+  color: var(--brand);
+  font-weight: 600;
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-md);
 }
-.cotainer p {
-  color: grey;
+
+.container p {
+  color: var(--text-secondary);
+  font-weight: 200;
 }
 
 .createdAt {
-  margin-top: 100px;
+  margin-top: var(--space-xl);
   display: flex;
-  background-color: #304ffe18;
+  background-color: var(--brand-faint);
   width: fit-content;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
 }
 
 .createdAt p {
   margin: 0;
   font-weight: 400;
-  margin-left: 10px;
+  margin-inline-end: var(--space-xs);
+  color: var(--text-secondary);
 }
 
 .createdAt span {
-  color: #304ffe;
+  color: var(--brand-dark);
+  font-weight: 400;
 }

@@ -3,72 +3,79 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  min-height: 90vh;
 }
 
 .form h4 {
-  color: #304ffe;
+  color: var(--brand);
   font-weight: 600;
-  font-size: 2rem;
-  margin-bottom: 20px;
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-md);
 }
 
 .form form {
   display: flex;
   flex-direction: column;
+  width: 100%;
   max-width: 700px;
-  box-shadow: #304ffe4a 0px 4px 15px;
-  border: 2px solid #304ffe;
-  padding: 40px;
-  border-radius: 10px;
-  margin-bottom: 30px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--brand-border);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-lg);
+  background: var(--surface);
 }
 
 .form label {
-  color: #304ffe;
-  margin-bottom: 10px;
+  color: var(--brand);
+  margin-bottom: var(--space-xs);
   font-weight: 400;
 }
 
 .form input {
-  margin-bottom: 40px;
-  width: 250px;
-  border: 1px #304ffe dashed;
-  color: grey;
-  border-radius: 5px;
-  padding: 10px;
+  margin-bottom: var(--space-md);
+  width: 100%;
+  max-width: 320px;
+  border: 1px dashed var(--brand-border);
+  color: var(--text);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
   direction: ltr !important;
-  font-size: 1rem;
-  height: 40px;
+  font-size: var(--text-base);
+  height: 44px;
+  background: var(--surface);
+  transition: border-color 0.15s ease;
 }
 
 .form input:focus {
-  border: 1px #304ffe solid;
+  border: 1px solid var(--brand);
   outline: none;
 }
 
 .form button {
   border: none;
-  background-color: #304ffe;
+  background-color: var(--brand);
   color: #fff;
-  font-size: 1.2rem;
+  font-size: var(--text-lg);
   font-weight: 400;
-  border-radius: 5px;
-  transition: all ease-in 0.1s;
+  border-radius: var(--radius-md);
+  transition: background-color 0.15s ease, transform 0.1s ease;
   cursor: pointer;
-  padding: 8px 0;
+  padding: var(--space-sm) 0;
 }
 .form button:hover {
-  transform: scale(1.05);
+  background-color: var(--brand-dark);
+  transform: scale(1.02);
 }
 
 .form p {
-  color: grey;
-  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-size: var(--text-base);
 }
 
 .form a {
-  color: #304ffe;
-  margin-right: 10px;
-  border-bottom: 3px solid grey;
+  color: var(--brand);
+  margin-inline-start: var(--space-xs);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }

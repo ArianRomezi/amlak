@@ -1,0 +1,158 @@
+/* Floating search icon button (FAB) */
+.fab {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: var(--brand);
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(48, 79, 254, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, background 0.15s ease;
+  z-index: 1000;
+}
+
+.fab:hover,
+.fab:focus {
+  background: var(--brand-dark);
+  transform: scale(1.05);
+}
+
+/* Modal overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 1001;
+  padding: 80px 16px 40px;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal panel */
+.modal {
+  width: 100%;
+  max-width: 900px;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  animation: slideDown 0.18s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Search bar with icon + input + clear button */
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.searchIcon {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--text-base);
+  padding: var(--space-xs) 4px;
+  color: var(--text);
+  font-family: inherit;
+  direction: rtl;
+}
+
+.input::placeholder {
+  color: var(--text-secondary);
+}
+
+.clearBtn {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: var(--space-xs);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.clearBtn:hover,
+.clearBtn:focus {
+  background: var(--border);
+  color: var(--text);
+}
+
+/* Results body */
+.body {
+  padding: var(--space-md);
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg) 0;
+}
+
+.hint {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: var(--space-lg) 0;
+}
+
+.error {
+  color: var(--danger);
+  text-align: center;
+  padding: var(--space-md) 0;
+}
+
+/* Results grid — matches the page's card layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-md);
+}

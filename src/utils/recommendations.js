@@ -1,39 +1,95 @@
 import connectDB from "@/utils/connectDB";
 import Profile from "@/models/Profile";
 import SessionView from "@/models/SessionView";
+import fs from "fs";
+import path from "path";
 
 const LIMIT = 4;
 
-// Content-based similarity: category, price within +/-30%, location, shared amenities.
-function scoreSimilarity(current, other) {
-  let score = 0;
-
-  if (current.category === other.category) {
-    score += 10;
+// --- بخش مربوط به بارگذاری و اجرای مدل XGBoost ---
+let modelData = null;
+function loadModel() {
+  if (!modelData) {
+    try {
+      const modelPath = path.join(
+        process.cwd(),
+        "src",
+        "utils",
+        "xgb_model.json",
+      );
+      const fileContent = fs.readFileSync(modelPath, "utf8");
+      modelData = JSON.parse(fileContent);
+    } catch (error) {
+      console.error("خطا در بارگذاری فایل مدل XGBoost:", error);
+    }
   }
+  return modelData;
+}
 
-  const curPrice = Number(current.price);
-  const otherPrice = Number(other.price);
-  if (
-    curPrice > 0 &&
-    otherPrice > 0 &&
-    Math.abs(curPrice - otherPrice) / curPrice <= 0.3
-  ) {
-    score += 10;
-  }
+function evaluateTree(tree, features) {
+  let currentNodeId = 0;
+  const nodes = tree.split_indices;
+  const conditions = tree.split_conditions;
+  const leftChildren = tree.left_children;
+  const rightChildren = tree.right_children;
+  const baseWeights = tree.base_weights;
 
-  if (current.location === other.location) {
-    score += 8;
+  while (true) {
+    if (
+      leftChildren[currentNodeId] === -1 &&
+      rightChildren[currentNodeId] === -1
+    ) {
+      return baseWeights[currentNodeId];
+    }
+    const featureIdx = nodes[currentNodeId];
+    const threshold = conditions[currentNodeId];
+    const val = features[featureIdx];
+
+    if (val < threshold) {
+      currentNodeId = leftChildren[currentNodeId];
+    } else {
+      currentNodeId = rightChildren[currentNodeId];
+    }
+
+    if (currentNodeId === -1 || currentNodeId >= baseWeights.length) {
+      return baseWeights[0];
+    }
   }
+}
+
+// محاسبه امتیاز شباهت با استفاده از مدل یادگیری ماشین XGBoost
+function scoreSimilarityWithXGBoost(current, other) {
+  const model = loadModel();
+  if (!model) return 0;
+
+  // استخراج ۴ ویژگی دقیقاً مشابه اسکریپت پایتون
+  const catMatch = current.category === other.category ? 1.0 : 0.0;
+
+  const curPrice = Number(current.price || 0);
+  const otherPrice = Number(other.price || 0);
+  const priceRatio =
+    curPrice > 0 ? Math.abs(curPrice - otherPrice) / curPrice : 0;
+
+  const locMatch = current.location === other.location ? 1.0 : 0.0;
 
   const curAmenities = new Set(current.amenities || []);
   const shared = (other.amenities || []).filter((a) => curAmenities.has(a));
-  if (shared.length) {
-    score += Math.min(shared.length * 2, 6);
+  const sharedCount = shared.length;
+
+  const features = [catMatch, priceRatio, locMatch, sharedCount];
+
+  // محاسبه امتیاز از تمام درخت‌های مدل
+  const trees = model.learner.gradient_booster.model.trees;
+  let rawScore = 0;
+  for (let i = 0; i < trees.length; i++) {
+    rawScore += evaluateTree(trees[i], features);
   }
 
-  return score;
+  // تبدیل خروجی به احتمال (بین ۰ و ۱)
+  const probability = 1 / (1 + Math.exp(-rawScore));
+  return probability;
 }
+// --------------------------------------------------
 
 // Collaborative filtering: properties frequently viewed together (co-visitation).
 async function getCoViewed(currentId, limit) {
@@ -83,9 +139,9 @@ export async function getRecommendations(profileId) {
     published: true,
   }).select("-userId");
 
-  // 1) Content-based similar properties.
+  // 1) Content-based similar properties using XGBoost Model.
   const similar = candidates
-    .map((p) => ({ profile: p, score: scoreSimilarity(current, p) }))
+    .map((p) => ({ profile: p, score: scoreSimilarityWithXGBoost(current, p) }))
     .filter((item) => item.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, LIMIT)
@@ -94,7 +150,7 @@ export async function getRecommendations(profileId) {
   // 2) Collaborative filtering: users also viewed.
   let alsoViewed = await getCoViewed(current._id, LIMIT);
 
-  // Fallback: fill sparse co-visitation data with similar properties.
+  // Fallback: fill sparse co-visitation data with ML similar properties.
   const used = new Set(alsoViewed.map((p) => p._id.toString()));
   used.add(current._id.toString());
   similar.forEach((p) => used.add(p._id.toString()));
@@ -102,7 +158,10 @@ export async function getRecommendations(profileId) {
   if (alsoViewed.length < LIMIT) {
     const fallback = candidates
       .filter((p) => !used.has(p._id.toString()))
-      .map((p) => ({ profile: p, score: scoreSimilarity(current, p) }))
+      .map((p) => ({
+        profile: p,
+        score: scoreSimilarityWithXGBoost(current, p),
+      }))
       .filter((item) => item.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, LIMIT - alsoViewed.length)

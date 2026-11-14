@@ -14,6 +14,7 @@ function AddProfilePage({ data }) {
   const [profileData, setProfileData] = useState({
     title: "",
     description: "",
+    area: "",
     location: "",
     phone: "",
     price: "",
@@ -80,6 +81,12 @@ function AddProfilePage({ data }) {
         profileData={profileData}
         setProfileData={setProfileData}
         textarea={true}
+      />
+      <TextInput
+        title="متراژ"
+        name="area"
+        profileData={profileData}
+        setProfileData={setProfileData}
       />
       <TextInput
         title="آدرس"

@@ -40,6 +40,6 @@
 .skeletonCard {
   width: 250px;
   height: 340px;
-  background: #eef0f7;
-  border-radius: 10px;
+  background: var(--border);
+  border-radius: var(--radius-md);
 }

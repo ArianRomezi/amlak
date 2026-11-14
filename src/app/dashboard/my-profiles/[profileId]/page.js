@@ -6,7 +6,7 @@ import connectDB from "@/utils/connectDB";
 const Edit = async ({ params: { profileId } }) => {
   await connectDB();
 
-  const profile = await Profile.findOne({ _id: profileId });
+  const profile = await Profile.findOne({ _id: profileId }).lean();
 
   if (!profile) return <h3>مشکلی پیش آمده است. لطفا دوباره امتحان کنید...</h3>;
 

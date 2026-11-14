@@ -1,8 +1,19 @@
 .container ul {
-  padding-right: 20px;
-  margin-bottom: 50px;
+  padding-inline-start: 20px;
+  margin-bottom: 0;
+}
+
+.container li {
+  color: var(--text-secondary);
+  font-weight: 200;
+  margin-bottom: var(--space-xs);
 }
 
 .container li::marker {
-  color: #304ffe;
+  color: var(--brand);
+}
+
+.container p {
+  color: var(--text-secondary);
+  font-weight: 200;
 }

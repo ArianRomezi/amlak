@@ -1,5 +1,6 @@
 import Card from "@/module/Card";
 import SideBar from "@/module/Sidebar";
+import SearchOverlay from "@/module/SearchOverlay";
 import styles from "@/template/BuyResidentialsPage.module.css";
 
 const BuyResidentialsPage = ({ data }) => {
@@ -9,6 +10,7 @@ const BuyResidentialsPage = ({ data }) => {
         <SideBar />
       </div>
       <div className={styles.main}>
+        <SearchOverlay />
         {data.length ? null : (
           <p className={styles.text}>هیچ آگهی ثبت نشده است</p>
         )}

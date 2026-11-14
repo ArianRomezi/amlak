@@ -1,3 +1,48 @@
+:root {
+  /* palette */
+  --brand: #304ffe;
+  --brand-dark: #253dd8;
+  --brand-faint: rgba(48, 79, 254, 0.08);
+  --brand-border: rgba(48, 79, 254, 0.14);
+  --surface: #ffffff;
+  --bg: #f7f8fc;
+  --text: #111827;
+  --text-secondary: #6b7280;
+  --border: #eef0f8;
+  --danger: #db0505;
+  --danger-faint: rgba(219, 5, 5, 0.12);
+  --success: #00a800;
+  --success-faint: rgba(0, 168, 0, 0.12);
+
+  /* radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* shadow */
+  --shadow-sm: 0 2px 8px rgba(48, 79, 254, 0.05);
+  --shadow-md: 0 4px 12px rgba(48, 79, 254, 0.06);
+  --shadow-lg: 0 14px 28px rgba(48, 79, 254, 0.14);
+
+  /* spacing */
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 18px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* type scale */
+  --text-sm: 0.85rem;
+  --text-base: 0.95rem;
+  --text-lg: 1.1rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 1.9rem;
+  --text-3xl: 2.6rem;
+  --line-tight: 1.25;
+  --line-normal: 1.6;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -11,6 +56,11 @@ body {
   overflow-x: hidden;
   margin: auto;
   padding: 0 10px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: var(--text-base);
+  line-height: var(--line-normal);
+  font-family: inherit;
 }
 
 a {
@@ -23,4 +73,9 @@ button,
 input,
 textarea {
   font-family: inherit;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
 }

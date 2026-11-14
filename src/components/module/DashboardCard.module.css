@@ -1,15 +1,18 @@
 .container {
   display: flex;
-  border: 2px solid #304ffe58;
-  border-radius: 15px;
-  margin-bottom: 20px;
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
 }
 
 .main {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  padding: 10px;
+  padding: var(--space-md);
   width: 100%;
 }
 
@@ -17,22 +20,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: var(--space-xs);
   width: 48%;
-  background-color: #fff;
+  background-color: var(--surface);
   cursor: pointer;
   height: 40px;
-  border-radius: 8px;
-  font-size: 1rem;
-  border: 1px solid rgb(0, 168, 0);
-  color: rgb(0, 168, 0);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  border: 1px solid var(--success);
+  color: var(--success);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.main button:hover {
+  background-color: var(--success);
+  color: #fff;
 }
 
 .main svg {
   font-size: 1.1rem;
-  margin-right: 10px;
 }
 
 .main button:last-child {
-  border: 1px solid #db0505;
-  color: #db0505;
+  border: 1px solid var(--danger);
+  color: var(--danger);
+}
+
+.main button:last-child:hover {
+  background-color: var(--danger);
+  color: #fff;
 }

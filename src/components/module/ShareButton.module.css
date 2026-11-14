@@ -8,19 +8,19 @@
 .container button {
   border: none;
   background: none;
-  font-size: 1rem;
-  color: grey;
+  font-size: var(--text-base);
+  color: var(--text-secondary);
   height: 20px;
   transition: all ease-in 0.1s;
   cursor: pointer;
 }
 
 .container:hover button {
-  color: #304ffe;
+  color: var(--brand);
 }
 
 .container svg {
   margin-left: 10px;
   font-size: 1.2rem;
-  color: #304ffe;
+  color: var(--brand);
 }

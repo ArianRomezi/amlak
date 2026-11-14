@@ -7,19 +7,26 @@ import { icons } from "@/constants/icons";
 
 const Card = ({ data: { _id, category, title, location, price } }) => {
   return (
-    <div className={styles.container}>
+    <article className={styles.container}>
       <div className={styles.icon}>{icons[category]}</div>
-      <p className={styles.title}>{title}</p>
+
+      <h3 className={styles.title}>{title}</h3>
+
       <p className={styles.location}>
         <HiOutlineLocationMarker />
         {location}
       </p>
-      <span>{sp(price)} تومان</span>
-      <Link href={`/buy-residential/${_id}`}>
+
+      <div className={styles.meta}>
+        <span className={styles.price}>{sp(price)}</span>
+        <span className={styles.currency}>تومان</span>
+      </div>
+
+      <Link href={`/buy-residential/${_id}`} className={styles.link}>
         مشاهده آگهی
         <BiLeftArrowAlt />
       </Link>
-    </div>
+    </article>
   );
 };
 

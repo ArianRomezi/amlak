@@ -2,33 +2,45 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  margin: 20px 0;
-  border-radius: 10px;
-  background-color: #304ffe;
+  padding: var(--space-sm) var(--space-md);
+  margin: var(--space-md) 0;
+  border-radius: var(--radius-md);
+  background-color: var(--brand);
   color: #fff;
+  box-shadow: var(--shadow-sm);
 }
 
 .header ul {
   list-style: none;
   display: flex;
+  gap: var(--space-lg);
 }
 
-.header ul li {
-  margin-left: 30px;
+.header ul li a {
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: #fff;
+  transition: opacity 0.15s ease;
+}
+
+.header ul li a:hover {
+  opacity: 0.75;
 }
 
 .login a {
   display: flex;
   align-items: center;
+  gap: var(--space-xs);
   background-color: #fff;
-  color: #304ffe;
-  padding: 3px 7px;
-  border-radius: 5px;
-  transition: all ease-in 0.1s;
+  color: var(--brand);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-weight: 400;
+  transition: background-color 0.15s ease;
 }
+
 .login a:hover {
-  background-color: #304ffe;
+  background-color: var(--brand-dark);
   color: #fff;
 }
 
@@ -37,11 +49,11 @@
 }
 
 .login span {
-  margin-right: 5px;
+  margin-right: var(--space-xs);
 }
 
 @media (max-width: 600px) {
-  .header ul li {
-    margin-left: 10px;
+  .header ul {
+    gap: var(--space-sm);
   }
 }

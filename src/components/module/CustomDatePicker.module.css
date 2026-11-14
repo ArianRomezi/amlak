@@ -1,19 +1,28 @@
 .container {
-  margin-bottom: 60px;
+  margin-bottom: var(--space-lg);
 }
 
 .container p {
-  margin-bottom: 5px;
+  margin-bottom: var(--space-xs);
+  color: var(--brand);
+  font-weight: 400;
+  font-size: var(--text-base);
 }
 
 .container input {
   width: 110px;
-  border: 1px #304ffe dashed;
-  color: grey;
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 1rem;
+  border: 1px dashed var(--brand-border);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm);
+  font-size: var(--text-base);
   height: 30px;
-  margin-left: 10px;
+  margin-left: var(--space-xs);
   text-align: center;
+  background: var(--surface);
+}
+
+.container input:focus {
+  border: 1px solid var(--brand);
+  outline: none;
 }

@@ -10,6 +10,10 @@ const profileSchema = new Schema(
       type: String,
       required: true,
     },
+    area: {
+      type: Number,
+      // required: true,
+    },
     location: {
       type: String,
       required: true,
@@ -57,7 +61,7 @@ const profileSchema = new Schema(
     },
   },
   //khate payyen daghighan kare createdAt va updateAt ro anjam mide.
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Profile = models.Profile || model("Profile", profileSchema);

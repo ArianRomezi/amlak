@@ -1,7 +1,7 @@
 .text {
-  background-color: rgba(219, 5, 5, 0.159);
-  color: rgb(219, 5, 5);
-  font-size: 1.3rem;
-  padding: 10px 15px;
-  border-radius: 10px;
+  background-color: var(--danger-faint);
+  color: var(--danger);
+  font-size: var(--text-xl);
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
 }
